@@ -12,10 +12,11 @@
 
 5. 去掉生成的pdf中带的白色背景；（目前使用的浏览器端的包，使用不方便，看找找有没有服务端的工具）
 
+6. 命令行方式使用pdfbox合并。（建议使用node 包 hummus,一方面方便node服务接入，另外速度比命令行快， 具体可以看src/humm.js）
 
 ## 相关工具文档地址：
 [java](https://www.java.com/zh_CN/)
 [node](https://nodejs.org/en/)
 [puppeteer](https://github.com/puppeteer/puppeteer)
 [pdfbox](https://pdfbox.apache.org/2.0/commandline.html)
-
+[hummus](https://github.com/galkahana/HummusJS)

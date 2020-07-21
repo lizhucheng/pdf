@@ -1,4 +1,4 @@
-## 这是一个用户尝试pdf相关工具的项目。
+## 这是一个用于尝试pdf相关工具的项目。
 
 ## 环境准备
 1. 安装java环境：根据官网安装说明安装java jdk, 并设置java 环境变量 JAVA_HOME 指向jdk所在目录， 并添加java jdk bin 目录到path, 方便执行java程序。(pdf 文件操作工具会使用 pdfbox 基于java；具体例子代码可以参考 mergepdf.bat 里面的脚本)
@@ -13,4 +13,9 @@
 5. 去掉生成的pdf中带的白色背景；（目前使用的浏览器端的包，使用不方便，看找找有没有服务端的工具）
 
 
+## 相关工具文档地址：
+[java](https://www.java.com/zh_CN/)
+[node](https://nodejs.org/en/)
+[puppeteer](https://github.com/puppeteer/puppeteer)
+[pdfbox](https://pdfbox.apache.org/2.0/commandline.html)
 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>download pdf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="main.js"></script>
+  <style>
+    body {
+      color: #434343;
+    }
+    
+    .box {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      -webkit-justify-content: space-between;
+    }
+    
+    .item {
+      flex: 1;
+      -webkit-box-flex: 1;
+      padding: 10px;
+    }
+    
+    img {
+      height: 340px;
+    }
+    
+    .download {
+      cursor: pointer;
+      width: 120px;
+      text-align: center;
+      background: #2081cd;
+      padding: 10px;
+      border-radius: 4px;
+      color: #f3f3f3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="item">
+      <p>
+        <span>打开开发者工具，在 network  ->  XHR 中找到下示地址，Preview 预览文件流字符串, 全选复制到同文件夹下 source.txt 文件中。
+          在右边选择 source.txt ，即可下载
+        </span><br>
+        <em>
+        eg：http://translatefiled.oss-cn-hangzhou.aliyuncs.com/abcde-123.pdf
+      </em>
+      </p>
+      <img src="./path.png" alt="">
+    </div>
+    <div class="item">
+      <input type='file' id=file>
+      <p onclick="down()" class="download">download</p>
+    </div>
+  </div>
+
+  <script>
+    var str = '',
+      file = null;
+
+    function readFileText() {
+      file = document.getElementById("file").files[0];
+      var reader = new FileReader();
+      reader.readAsText(file, 'utf-8');
+      reader.onload = function(e) {
+        str = this.result
+      }
+    };
+
+    function dataURLtoBlob(data) { //data是文件流
+      var bstr = $.base64.atob(data); //解码
+      var n = bstr.length;
+      var u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], {
+        type: 'application/pdf'
+      });
+    };
+
+    function downFile(blob, fileName) {
+      if (window.navigator.msSaveOrOpenBlob) {
+        navigator.msSaveBlob(blob, fileName);
+      } else {
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        window.URL.revokeObjectURL(link.href);
+      }
+    };
+
+    function down() {
+      readFileText()
+      setTimeout(function() {
+        file = dataURLtoBlob(str)
+        downFile(file, 'translatefiled.pdf')
+      }, 150);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      test pdfassembler
+    </title>
+    <script src="./pdf-assembler.e76e756b.js"></script>
+  </head>
+  <body>
+    <p>hello world!</p>
+    <input type="file" id="input" />
+
+    <script>
+      document.getElementById('input').addEventListener('change', evt => {
+        const file = evt.target.files[0];
+        const outputName = `change-${file.name}`;
+        const newPdf = new PDFAssembler(file);
+        
+        newPdf.getPDFStructure()
+          .then(function(pdf) {
+            console.log('pdf change:', pdf);
+            let content = pdf['/Root']['/Pages']['/Kids'][0]['/Contents'].stream;
+            content = content.replace(/1 1 1 rg[\s\S]+ re\s+f/, ($0) => {
+              return $0.slice(0, -1) + 'n';
+            });
+
+            pdf['/Root']['/Pages']['/Kids'][0]['/Contents'].stream = content;
+            console.log('editd: ', pdf['/Root']['/Pages']['/Kids'][0]['/Contents']);
+            newPdf
+              .assemblePdf(outputName)
+              .then(function(pdfFile) {
+                var reader = new FileReader();
+                reader.readAsDataURL(pdfFile);
+                reader.onload = () => {
+                  const el = document.createElement('a');
+                  el.setAttribute('download', outputName);
+                  el.href = reader.result;
+                  el.innerHTML = '下载pdf';
+                  document.body.appendChild(el);
+                }
+              })
+
+          });
+        })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+window.PDFAssembler = require('pdfassembler').PDFAssembler;

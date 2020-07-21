@@ -1,0 +1,22 @@
+{
+  "name": "pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "buildPdfLib": "webpack --config=./pdfAssemblerBuilder/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hummus": "^1.0.108",
+    "jspdf": "^1.5.3",
+    "pdfassembler": "0.1.0-beta.8",
+    "puppeteer-core": "^4.0.0",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
+  }
+}

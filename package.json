@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "hummus": "^1.0.108",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "pdfassembler": "0.1.0-beta.8",
     "puppeteer-core": "^4.0.0",
     "webpack": "^4.43.0"
